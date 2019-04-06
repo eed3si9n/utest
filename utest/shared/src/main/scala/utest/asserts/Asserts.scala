@@ -38,13 +38,15 @@ object Asserts {
         try{
 
           val tree = c.parse(s)
-          for(x <- tree if x.pos != NoPosition){
-            import compat._
-            x.pos = new OffsetPosition(
-              expr.tree.pos.source,
-              x.pos.point + expr.tree.pos.point + quoteOffset
-            ).asInstanceOf[c.universe.Position]
-          }
+
+          // commenting this out for Scala 2.13
+          // for(x <- tree if x.pos != NoPosition){
+          //   import compat._
+          //   x.pos = new OffsetPosition(
+          //     expr.tree.pos.source,
+          //     x.pos.point + expr.tree.pos.point + quoteOffset
+          //   ).asInstanceOf[c.universe.Position]
+          // }
 
           val tree2 = c.typeCheck(tree)
           val compileTimeOnlyType = typeOf[scala.reflect.internal.annotations.compileTimeOnly]
