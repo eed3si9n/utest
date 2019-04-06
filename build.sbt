@@ -104,3 +104,7 @@ inScope(Global)(
     PgpKeys.pgpPassphrase := sys.env.get("PGP_PASSPHRASE").map(_.toCharArray())
   )
 )
+
+lazy val utestJVM = utest.jvm
+lazy val utestJS = utest.js
+lazy val utestNative = utest.native
